@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT:8083}
+
+spring:
+  application:
+    name: plazoleta-mensajeria
+
+security:
+  jwt:
+    # Debe ser la misma clave que usa plazoleta-usuarios para firmar los tokens.
+    secret: ${JWT_SECRET:cGxhem9sZXRhLWRlLWNvbWlkYXMtc2VjcmV0by1zdXBlci1zZWd1cm8tMjU2LWJpdHM=}
+
+sms:
+  # simulado: no envia SMS reales, solo los registra en el log (por defecto).
+  # twilio: envia SMS reales con Twilio (requiere las variables TWILIO_*).
+  provider: ${SMS_PROVIDER:simulado}
+  # Prefijo que se agrega a los celulares sin codigo de pais (Twilio exige formato internacional).
+  default-country-code: ${SMS_DEFAULT_COUNTRY_CODE:+57}
+  twilio:
+    account-sid: ${TWILIO_ACCOUNT_SID:}
+    api-key-sid: ${TWILIO_API_KEY_SID:}
+    api-key-secret: ${TWILIO_API_KEY_SECRET:}
+    from-number: ${TWILIO_FROM_NUMBER:}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
